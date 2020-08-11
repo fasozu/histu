@@ -1,0 +1,36 @@
+<h1>HIStU</h1>
+<h3>Honey, I Shrunk the Urls - Url Shortener</h3>
+
+<%= form_with local: true do |form| %>
+  <div class="form_container">    
+    <%= form.url_field :url, value: (@shrunkenUrl.url if @shrunkenUrl), placeholder: "Please insert the url to generate short code" %>
+    <%= form.submit "Generate Short Code", id:"generateButton", class:"button_primary" %>
+  </div>  
+<% end %>
+
+<% if @shrunkenUrl %>
+  <% if @shrunkenUrl.errors.any? %>
+  <div id="error_explanation">
+      <h2>
+      <%= pluralize(@shrunkenUrl.errors.count, "error") %> prohibited
+      this url from being shrunken:
+      </h2>
+      <ul>
+      <% @shrunkenUrl.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+      <% end %>
+      </ul>
+  </div>
+  <% else %>    
+      <div id="containerShortenUrl">
+        <%= link_to request.host_with_port()+shorten_url_path(@shrunkenUrl.short_code), shorten_url_path(@shrunkenUrl.short_code), target: :_blank, id: "shorthen_url" %>    
+        <button class="clipboard-btn button_secondary" onclick="const url = document.getElementById('shorthen_url').href; navigator.clipboard.writeText(url)">
+            Copy to clipboard
+        </button>
+      </div>
+  <% end %>
+<% end %>
+
+
+
+
