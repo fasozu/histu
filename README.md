@@ -16,8 +16,8 @@ The idea is to keep an unused percentage of permutations before increase the cod
 
 This is for two main things:
 
-A. Insert some dificulty so human generated codes are not valid.
-B. Control the probability a generated random code was generated before.
+1. Insert some dificulty so human generated codes are not valid.
+2. Control the probability a generated random code was generated before.
 
 There is another config variable to control how many tries to do before giving up if the generated code was generated before. 
 
